@@ -5,7 +5,7 @@ import { AppController } from './app.controller';
 
 const config: SqliteConnectionOptions = {
   type: "sqlite",
-  database: "../db",
+  database: "loanDB",
   entities: [],
   synchronize: true
 }
