@@ -2,8 +2,7 @@
 
 ## Description
 
-This is the monorepo that consists of the API Gateway, Loan Service and Exchange Rate Microservice.
-
+This is the monorepo that consists of the [API Gateway](https://github.com/jorgeribeiro/liquidity-loan-enquiry/tree/main/api-gateway), [Loan Service](https://github.com/jorgeribeiro/liquidity-loan-enquiry/tree/main/loan-service) and Exchange Rate Microservice.
 
 ## Installation
 
