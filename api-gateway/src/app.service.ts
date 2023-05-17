@@ -8,14 +8,11 @@ export class AppService {
     @Inject("LOAN_SERVICE") private readonly loanService: ClientProxy
   ) {}
 
-  pingLoanService() {
-    const startTs = Date.now();
-    const pattern = { cmd: "ping" };
-    const payload = {};
-    return this.loanService
-      .send<string>(pattern, payload)
-      .pipe(
-        map((message: string) => ({ message, duration: Date.now() - startTs }))
-      );
+  getAllLoans() {
+    return this.loanService.send({ cmd: "getAll" }, {});
+  }
+
+  getLoanById(id: number) {
+    return this.loanService.send({ cmd: "getLoanById"}, id);
   }
 }

@@ -1,12 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
+@Controller('loans')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get("/ping-loan-service")
-  pingLoanService() {
-    return this.appService.pingLoanService();
+  @Get()
+  getAllLoans() {
+    return this.appService.getAllLoans();
+  }
+
+  @Get("/:id")
+  getLoanById(@Param() params: { id: number }) {
+    return this.appService.getLoanById(params.id);
   }
 }
