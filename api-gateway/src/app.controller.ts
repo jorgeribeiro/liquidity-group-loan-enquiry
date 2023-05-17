@@ -14,4 +14,9 @@ export class AppController {
   getLoanById(@Param() params: { id: number }) {
     return this.appService.getLoanById(params.id);
   }
+
+  @Get("/defaulted/:year")
+  getDefaultedLoansByYear(@Param() params: { year: number }) {
+    return this.appService.getDefaultedLoansByYear(params.year);
+  }
 }
