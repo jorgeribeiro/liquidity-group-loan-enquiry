@@ -17,4 +17,12 @@ export class LoanService {
   async findOne(id: number): Promise<Loan> {
     return this.loanRepository.findOneBy({ id: id });
   }
+
+  async findDefaultedByYear(year: number): Promise<Loan[]> {
+    return this.loanRepository
+      .createQueryBuilder('loan')
+      .where(`loan.default = 'yes'`)
+      .andWhere(`strftime('%Y', loan.loan_date) = :year`, { year })
+      .getMany();
+  }
 }

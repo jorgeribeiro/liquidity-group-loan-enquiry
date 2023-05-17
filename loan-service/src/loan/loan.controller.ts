@@ -15,4 +15,9 @@ export class LoanController {
   getById(id: number) {
     return this.loanService.findOne(id);
   }
+
+  @MessagePattern({ cmd: "getDefaultedLoansByYear" })
+  getDefaultedByYear(year: number) {
+    return this.loanService.findDefaultedByYear(year);
+  }
 }
