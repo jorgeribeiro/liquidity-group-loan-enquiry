@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { map } from 'rxjs';
 
 @Injectable()
 export class AppService {
@@ -18,5 +17,9 @@ export class AppService {
 
   getDefaultedLoansByYear(year: number) {
     return this.loanService.send({ cmd: "getDefaultedLoansByYear"}, year);
+  }
+
+  getDefaultDistribution(startDate: string, endDate: string) {
+    return this.loanService.send({ cmd: "getDefaultDistribution"}, { startDate, endDate } );
   }
 }

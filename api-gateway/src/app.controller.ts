@@ -19,4 +19,9 @@ export class AppController {
   getDefaultedLoansByYear(@Param() params: { year: number }) {
     return this.appService.getDefaultedLoansByYear(params.year);
   }
+
+  @Get("default-distribution/:startDate&:endDate")
+  getDistribution(@Param() params: { startDate: string, endDate: string }) {
+    return this.appService.getDefaultDistribution(params.startDate, params.endDate);
+  }
 }

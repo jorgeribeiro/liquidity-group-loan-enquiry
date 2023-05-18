@@ -25,4 +25,12 @@ export class LoanService {
       .andWhere(`strftime('%Y', loan.loan_date) = :year`, { year })
       .getMany();
   }
+
+  async findLoansInDateRange(startDate: string, endDate: string): Promise<Loan[]> {
+    return this.loanRepository
+      .createQueryBuilder('loan')
+      .where(`loan.loan_date >= :startDate`, { startDate })
+      .andWhere(`loan.loan_date <= :endDate`, { endDate })
+      .getMany();
+  }
 }

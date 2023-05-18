@@ -20,4 +20,29 @@ export class LoanController {
   getDefaultedByYear(year: number) {
     return this.loanService.findDefaultedByYear(year);
   }
+
+  @MessagePattern({ cmd: "getDefaultDistribution" })
+  async getDefaultDistribution(params: { startDate: string, endDate: string }) {
+    const loans = await this.loanService.findLoansInDateRange(params.startDate, params.endDate);
+    let defaultCount = 0;
+    let nonDefaultCount = 0;
+    for (const loan of loans) {
+      if (loan.default === "yes") {
+          defaultCount++;
+      } else if (loan.default === "no") {
+          nonDefaultCount++;
+      }
+    }
+
+    const totalCount = loans.length;
+    const defaultPercentage = ((defaultCount / totalCount) * 100).toFixed(2);
+    const nonDefaultPercentage = ((nonDefaultCount / totalCount) * 100).toFixed(2);
+
+    return {
+      defaultCount,
+      nonDefaultCount,
+      defaultPercentage: parseFloat(defaultPercentage),
+      nonDefaultPercentage: parseFloat(nonDefaultPercentage),
+    };
+  }
 }
