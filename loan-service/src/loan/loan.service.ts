@@ -29,4 +29,31 @@ export class LoanService {
       .andWhere(`loan.loan_date <= :endDate`, { endDate })
       .getMany();
   }
+
+  async findLoansByYear(
+    year: number,
+    dft?: string,
+    job?: string,
+    marital?: string,
+    education?: string
+    ): Promise<Loan[]> {
+    const queryBuilder = this.loanRepository
+    .createQueryBuilder('loan')
+    .where(`strftime('%Y', loan.loan_date) = :year`, { year });
+
+    if (dft !== undefined) {
+      queryBuilder.andWhere(`loan.default = :dft`, { dft });
+    }
+    if (job !== undefined) {
+      queryBuilder.andWhere(`loan.job = :job`, { job });
+    }
+    if (marital !== undefined) {
+      queryBuilder.andWhere(`loan.marital = :marital`, { marital });
+    }
+    if (education !== undefined) {
+      queryBuilder.andWhere(`loan.education = :education`, { education });
+    }
+
+    return queryBuilder.getMany();
+  }
 }

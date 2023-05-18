@@ -23,9 +23,9 @@ export class LoanController {
     let nonDefaultCount = 0;
     for (const loan of loans) {
       if (loan.default === "yes") {
-          defaultCount++;
+        defaultCount++;
       } else if (loan.default === "no") {
-          nonDefaultCount++;
+        nonDefaultCount++;
       }
     }
 
@@ -39,5 +39,16 @@ export class LoanController {
       defaultPercentage: parseFloat(defaultPercentage),
       nonDefaultPercentage: parseFloat(nonDefaultPercentage),
     };
+  }
+
+  @MessagePattern({ cmd: "getLoansByYear" })
+  getLoansByYear(params: { year: number, default?: string, job?: string, marital?: string, education?: string }) {
+    return this.loanService.findLoansByYear(
+      params.year,
+      params.default,
+      params.job,
+      params.marital,
+      params.education
+    );
   }
 }

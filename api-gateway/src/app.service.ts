@@ -18,4 +18,8 @@ export class AppService {
   getDefaultDistribution(startDate: string, endDate: string) {
     return this.loanService.send({ cmd: "getDefaultDistribution"}, { startDate, endDate } );
   }
+
+  getLoansByYear(year: number, dft?: string, job?: string, marital?: string, education?: string) {
+    return this.loanService.send({ cmd: "getLoansByYear"}, { year, dft, job, marital, education });
+  }
 }
