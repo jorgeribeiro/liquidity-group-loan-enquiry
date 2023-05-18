@@ -11,8 +11,8 @@ export class AppService {
     return this.loanService.send({ cmd: "getLoanById"}, id);
   }
 
-  getDefaultedLoansByYear(year: number) {
-    return this.loanService.send({ cmd: "getDefaultedLoansByYear"}, year);
+  getDefaultedLoansByYear(year: number, currency?: string) {
+    return this.loanService.send({ cmd: "getDefaultedLoansByYear"}, { year, currency });
   }
 
   getDefaultDistribution(startDate: string, endDate: string) {

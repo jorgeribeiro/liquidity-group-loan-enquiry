@@ -10,9 +10,9 @@ export class AppController {
     return this.appService.getLoanById(params.id);
   }
 
-  @Get("defaulted/:year")
-  getDefaultedLoansByYear(@Param() params: { year: number }) {
-    return this.appService.getDefaultedLoansByYear(params.year);
+  @Get("defaulted/:year?:currency")
+  getDefaultedLoansByYear(@Param() params: { year: number, currency?: string }) {
+    return this.appService.getDefaultedLoansByYear(params.year, params.currency);
   }
 
   @Get("default-distribution/:startDate&:endDate")
