@@ -5,11 +5,6 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getAllLoans() {
-    return this.appService.getAllLoans();
-  }
-
   @Get("/:id")
   getLoanById(@Param() params: { id: number }) {
     return this.appService.getLoanById(params.id);

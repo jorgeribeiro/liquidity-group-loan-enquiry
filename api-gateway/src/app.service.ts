@@ -7,10 +7,6 @@ export class AppService {
     @Inject("LOAN_SERVICE") private readonly loanService: ClientProxy
   ) {}
 
-  getAllLoans() {
-    return this.loanService.send({ cmd: "getAll" }, {});
-  }
-
   getLoanById(id: number) {
     return this.loanService.send({ cmd: "getLoanById"}, id);
   }

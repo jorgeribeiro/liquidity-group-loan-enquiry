@@ -10,10 +10,6 @@ export class LoanService {
     private loanRepository: Repository<Loan>
   ) {}
 
-  async findAll(): Promise<Loan[]> {
-    return this.loanRepository.find();
-  }
-
   async findOne(id: number): Promise<Loan> {
     return this.loanRepository.findOneBy({ id: id });
   }
