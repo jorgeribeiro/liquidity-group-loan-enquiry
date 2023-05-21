@@ -17,4 +17,4 @@ Fetch defaulted loans by year with optional foreign currency `/loans/default/:ye
 
 Fetch distribution default vs non-default for a range of dates `/loans/default-distribution/:start_range&:end_range`
 
-Fetch loans by year with optional user parameters `/loans/by-year/:year?default=:default&job=:job&marital=:marital&education=:education`
+Fetch loans by year with optional user parameters `/loans?year=:year&default=:default&job=:job&marital=:marital&education=:education`
