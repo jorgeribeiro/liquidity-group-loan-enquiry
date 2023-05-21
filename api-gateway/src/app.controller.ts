@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller('loans')
@@ -10,9 +10,12 @@ export class AppController {
     return this.appService.getLoanById(params.id);
   }
 
-  @Get("defaulted/:year?:currency")
-  getDefaultedLoansByYear(@Param() params: { year: number, currency?: string }) {
-    return this.appService.getDefaultedLoansByYear(params.year, params.currency);
+  @Get('defaulted/:year')
+  getDefaultedLoansByYear(
+    @Param('year') year: number,
+    @Query('currency') currency?: string,
+  ) {
+    return this.appService.getDefaultedLoansByYear(year, currency);
   }
 
   @Get("default-distribution/:startDate&:endDate")
@@ -20,8 +23,14 @@ export class AppController {
     return this.appService.getDefaultDistribution(params.startDate, params.endDate);
   }
 
-  @Get("by-year/:year?:default&:job&:marital&:education")
-  getLoansByYear(@Param() params: { year: number, default?: string, gender?: string, job?: string }) {
-    return this.appService.getLoansByYear(params.year, params.default, params.gender, params.job);
+  @Get()
+  getLoansByYear(
+    @Query('year') year: number,
+    @Query('default') dft?: string,
+    @Query('job') job?: string,
+    @Query('marital') marital?: string,
+    @Query('education') education?: string,
+  ) {
+    return this.appService.getLoansByYear(year, dft, job, marital, education);
   }
 }
