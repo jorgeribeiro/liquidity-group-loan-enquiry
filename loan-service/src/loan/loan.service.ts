@@ -40,20 +40,6 @@ export class LoanService {
     return res;
   }
 
-  async getExchangeRate(currency: string): Promise<number> {
-    const exchangeRate$ = this.exchangeRateService.send({ cmd: 'getExchangeRate' }, currency);
-    try {
-      const exchangeRate = await lastValueFrom(exchangeRate$);
-      if (exchangeRate) {
-        return exchangeRate;
-      } else {
-        throw new Error('No exchange rate received.');
-      }
-    } catch (error) {
-      throw new Error('Error retrieving exchange rate.');
-    }
-  }
-
   async findLoansDistributionInDateRange(startDate: string, endDate: string): Promise<LoanDistribution> {
     const res = await this.loanRepository
       .createQueryBuilder('loan')
@@ -108,5 +94,19 @@ export class LoanService {
     }
 
     return queryBuilder.getMany();
+  }
+
+  private async getExchangeRate(currency: string): Promise<number> {
+    const exchangeRate$ = this.exchangeRateService.send({ cmd: 'getExchangeRate' }, currency);
+    try {
+      const exchangeRate = await lastValueFrom(exchangeRate$);
+      if (exchangeRate) {
+        return exchangeRate;
+      } else {
+        throw new Error('No exchange rate received.');
+      }
+    } catch (error) {
+      throw new Error('Error retrieving exchange rate.');
+    }
   }
 }
