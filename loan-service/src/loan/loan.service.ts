@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { InjectRepository } from '@nestjs/typeorm';
+import { lastValueFrom } from 'rxjs';
 import { Loan } from 'src/entities/loan.entity';
 import { Repository } from 'typeorm';
 
@@ -30,15 +31,27 @@ export class LoanService {
       .getMany();
 
       if (currency) {
-        const exchangeRate$ = this.exchangeRateService.send({ cmd: "getExchangeRate"}, {});
-        for (const loan of res) {
-          exchangeRate$.subscribe((exchangeRate: number) => {
-            loan.balance = loan.balance * exchangeRate;
-          })
-        }
+        const exchangeRate = await this.getExchangeRate(currency);
+        res.forEach((loan) => {
+          loan.balance *= exchangeRate;
+        });
       }
 
     return res;
+  }
+
+  async getExchangeRate(currency: string): Promise<number> {
+    const exchangeRate$ = this.exchangeRateService.send({ cmd: 'getExchangeRate' }, currency);
+    try {
+      const exchangeRate = await lastValueFrom(exchangeRate$);
+      if (exchangeRate) {
+        return exchangeRate;
+      } else {
+        throw new Error('No exchange rate received.');
+      }
+    } catch (error) {
+      throw new Error('Error retrieving exchange rate.');
+    }
   }
 
   async findLoansDistributionInDateRange(startDate: string, endDate: string): Promise<LoanDistribution> {

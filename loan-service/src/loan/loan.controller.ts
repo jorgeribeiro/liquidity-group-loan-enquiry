@@ -12,8 +12,8 @@ export class LoanController {
   }
 
   @MessagePattern({ cmd: "getDefaultedLoansByYear" })
-  getDefaultedByYear(year: number, currency?: string) {
-    return this.loanService.findDefaultedByYear(year, currency);
+  getDefaultedByYear(params: { year: number, currency?: string }) {
+    return this.loanService.findDefaultedByYear(params.year, params.currency);
   }
 
   @MessagePattern({ cmd: "getDefaultDistribution" })
