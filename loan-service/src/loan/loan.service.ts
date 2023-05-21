@@ -30,13 +30,13 @@ export class LoanService {
       .getMany();
 
       if (currency) {
-      const exchangeRate$ = this.exchangeRateService.send({ cmd: "getExchangeRate"}, {});
-      for (const loan of res) {
-        exchangeRate$.subscribe((exchangeRate: number) => {
+        const exchangeRate$ = this.exchangeRateService.send({ cmd: "getExchangeRate"}, {});
+        for (const loan of res) {
+          exchangeRate$.subscribe((exchangeRate: number) => {
             loan.balance = loan.balance * exchangeRate;
-        })
+          })
+        }
       }
-    }
 
     return res;
   }
