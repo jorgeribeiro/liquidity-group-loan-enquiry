@@ -99,12 +99,7 @@ export class LoanService {
   private async getExchangeRate(currency: string): Promise<number> {
     const exchangeRate$ = this.exchangeRateService.send({ cmd: 'getExchangeRate' }, currency);
     try {
-      const exchangeRate = await lastValueFrom(exchangeRate$);
-      if (exchangeRate) {
-        return exchangeRate;
-      } else {
-        throw new Error('No exchange rate received.');
-      }
+      return await lastValueFrom(exchangeRate$);
     } catch (error) {
       throw new Error('Error retrieving exchange rate.');
     }
