@@ -25,7 +25,7 @@ export class AppController {
 
   @Get()
   getLoansByYear(
-    @Query('year') year: number,
+    @Param('year') year: number,
     @Query('default') dft?: string,
     @Query('job') job?: string,
     @Query('marital') marital?: string,
