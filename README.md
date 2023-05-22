@@ -7,14 +7,28 @@ This is the monorepo that consists of the [API Gateway](https://github.com/jorge
 ## Installation
 
 You can find the installation steps in each directory in this repository. 
-You just need `npm` to be able to install and run each module.
+Or you can simply run `npm install` and `npm run start` in each module.
+
+In case you are unable to run the modules via `npm run start`, just remove the `package-lock.json` file along with the `node_modules` directory and run `npm install` again.
 
 ## Endpoints
 
-Fetch loan by ID: `/loans/:id`
+1. Fetch loan by ID: 
+```
+/loans/:id
+```
 
-Fetch defaulted loans by year with optional foreign currency `/loans/default/:year?currency=:currency`
+2. Fetch defaulted loans by year with optional foreign currency:
+```
+/loans/default/:year?currency=:currency
+```
 
-Fetch distribution default vs non-default for a range of dates `/loans/default-distribution/:start_range&:end_range`
+3. Fetch distribution default vs non-default for a range of dates:
+```
+/loans/default-distribution/:start_range&:end_range
+```
 
-Fetch loans by year with optional user parameters `/loans?year=:year&default=:default&job=:job&marital=:marital&education=:education`
+4. Fetch loans by year with optional user parameters:
+```
+/loans?year=:year&default=:default&job=:job&marital=:marital&education=:education
+```
