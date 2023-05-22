@@ -13,22 +13,24 @@ In case you are unable to run the modules via `npm run start`, just remove the `
 
 ## Endpoints
 
+The API Gateway is configured to run on the port `3000`. So the endpoints running locally are:
+
 1. Fetch loan by ID: 
 ```
-/loans/:id
+http://localhost:3000/loans/:id
 ```
 
 2. Fetch defaulted loans by year with optional foreign currency:
 ```
-/loans/default/:year?currency=:currency
+http://localhost:3000/loans/default/:year?currency=:currency
 ```
 
 3. Fetch distribution default vs non-default for a range of dates:
 ```
-/loans/default-distribution/:start_range&:end_range
+http://localhost:3000/loans/default-distribution/:start_range&:end_range
 ```
 
 4. Fetch loans by year with optional user parameters:
 ```
-/loans?year=:year&default=:default&job=:job&marital=:marital&education=:education
+http://localhost:3000/loans?year=:year&default=:default&job=:job&marital=:marital&education=:education
 ```
