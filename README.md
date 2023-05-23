@@ -20,7 +20,7 @@ The API Gateway is configured to run on the port `3000`. So the endpoints runnin
 http://localhost:3000/loans/:id
 ```
 
-2. Fetch defaulted loans by year with optional foreign currency:
+2. Fetch defaulted loans by year with optional foreign currency (supported values for currency: `USD`, `GBP`, `AED`, `EUR`):
 ```
 http://localhost:3000/loans/default/:year?currency=:currency
 ```
