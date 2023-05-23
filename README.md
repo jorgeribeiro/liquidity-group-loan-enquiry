@@ -25,7 +25,7 @@ http://localhost:3000/loans/:id
 http://localhost:3000/loans/default/:year?currency=:currency
 ```
 
-3. Fetch distribution default vs non-default for a range of dates:
+3. Fetch distribution default vs non-default for a range of dates (date format: `YYYY-MM-DD`):
 ```
 http://localhost:3000/loans/default-distribution/:start_range&:end_range
 ```
