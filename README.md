@@ -1,4 +1,4 @@
-# Liquidity Group Assignment - Loan Enquiry
+# Liquidity Group - Loan Enquiry
 
 ## Description
 
