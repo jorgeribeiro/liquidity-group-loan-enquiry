@@ -1,8 +1,8 @@
-# Liquidity Group - Loan Enquiry
+# [NestJS] Loan Enquiry application
 
 ## Description
 
-This is the monorepo that consists of the [API Gateway](https://github.com/jorgeribeiro/liquidity-loan-enquiry/tree/main/api-gateway), [Loan Service](https://github.com/jorgeribeiro/liquidity-loan-enquiry/tree/main/loan-service) and [Exchange Rate Microservice](https://github.com/jorgeribeiro/liquidity-loan-enquiry/tree/main/exchange-rate-microservice).
+This is a monorepo that consists of an [API Gateway](https://github.com/jorgeribeiro/liquidity-loan-enquiry/tree/main/api-gateway), a [Loan Service](https://github.com/jorgeribeiro/liquidity-loan-enquiry/tree/main/loan-service) and an [Exchange Rate Microservice](https://github.com/jorgeribeiro/liquidity-loan-enquiry/tree/main/exchange-rate-microservice).
 
 ## Installation
 
